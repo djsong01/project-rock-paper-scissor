@@ -1,4 +1,4 @@
-console.log("Hello World");
+//console.log("Hello World");
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*100);
@@ -9,7 +9,7 @@ function getComputerChoice(){
         return "Paper"
     }
     else{
-        return "Scissors"
+        return "Scissor"
     }
 }
 
@@ -33,35 +33,36 @@ let rounds = 0;
 function playRound(humanChoice,computerChoice){
     let hScore = 0;
     let cScore = 0;
-    let roundCount= 0;
+    let roundCount = 0;
 
-    if (humanChoice == "Rock" && computerChoice == "Paper"){
+    if (humanChoice === computerChoice){
+        roundCount++;
+    }
+    else if (humanChoice === "Rock" && computerChoice === "Paper"){
         cScore++;
         roundCount++;
     }
-    else if (humanChoice == "Rock" && computerChoice == "Scissors"){
-        hScore++
-        roundCount++
+    else if (humanChoice === "Rock" && computerChoice === "Scissor"){
+        hScore++;
+        roundCount++;
     }
-    else if (humanChoice == "Paper" && computerChoice == "Rock"){
-        hScore++
-        roundCount++
+    else if (humanChoice === "Paper" && computerChoice === "Rock"){
+        hScore++;
+        roundCount++;
     }
-    else if (humanChoice == "Paper" && computerChoice == "Scissors"){
+    else if (humanChoice === "Paper" && computerChoice === "Scissor"){
         cScore++;
         roundCount++;
     }
-    else if (humanChoice == "Scissor" && computerChoice == "Rock"){
+    else if (humanChoice === "Scissor" && computerChoice === "Rock"){
         cScore++;
         roundCount++;
     }
-    else if (humanChoice == "Scissor" && computerChoice == "Paper"){
-        hScore++
-        roundCount++
-    }
-    else if (humanChoice === computerChoice){
+    else if (humanChoice === "Scissor" && computerChoice === "Paper"){
+        hScore++;
         roundCount++;
     }
+    
     return{
         humanScore: hScore,
         computerScore: cScore,
@@ -71,17 +72,17 @@ function playRound(humanChoice,computerChoice){
 
 function playGame(num){
     while(rounds < num){
-        const comp = getComputerChoice();
-        const human = getHumanChoice();    
-
+    const human = getHumanChoice();    
+    const comp = getComputerChoice();
     const roundResult = playRound(human,comp)
+
     humanScore += roundResult.humanScore;
     computerScore += roundResult.computerScore;
     rounds += roundResult.rounds;
     
     console.log("Round: " + rounds);
-    console.log("Computer says " + getComputerChoice());
-    console.log("Human says " + getHumanChoice());
+    console.log("Human says " + human);
+    console.log("Computer says " + comp);
     console.log("Human score: " + humanScore);
     console.log("Computer score: " + computerScore);
     }
