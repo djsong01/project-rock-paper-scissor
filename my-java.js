@@ -13,7 +13,6 @@ function getComputerChoice(){
     }
 }
 
-
 function getHumanChoice(){
     let a = prompt("Rock, Paper, or Scissor?");
     let choice = a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
@@ -25,7 +24,6 @@ function getHumanChoice(){
         return getHumanChoice();
     }
 }
-
 
 let humanScore = 0;
 let computerScore = 0;
@@ -40,6 +38,7 @@ function playRound(humanChoice,computerChoice){
         roundCount++;
     }
     else if (humanChoice === "Rock" && computerChoice === "Paper"){
+        cScore++;
     }
     else if (humanChoice === "Rock" && computerChoice === "Scissor"){
         hScore++;
@@ -71,6 +70,17 @@ paper.value = "Paper"
 const scissor = document.querySelector("#Scissor")
 scissor.value ="Scissor"
 
+function displayScores(humanScore, computerScore, rounds) {    
+    const hScore = document.querySelector('#human-score');
+    const cScore = document.querySelector('#comp-score');
+    const rds = document.querySelector('#rounds');
+
+    hScore.textContent = `Human Score: ${humanScore}`; 
+    cScore.textContent = `Computer Score: ${computerScore}`;
+    rds.textContent = `Rounds Played: ${rounds}`;
+}
+
+
 rock.addEventListener(('click'), () => {
     let comp = getComputerChoice();
     const roundResult = playRound("Rock",comp);
@@ -79,10 +89,8 @@ rock.addEventListener(('click'), () => {
     rounds += roundResult.rounds;
 
     console.log("Round: " + rounds);
-    console.log("Human says " + rock.value);
     console.log("Computer says " + comp);
-    console.log("Human score: " + humanScore);
-    console.log("Computer score: " + computerScore);
+    displayScores(humanScore, computerScore, rounds);
     });
 
 paper.addEventListener(('click'), () => {
@@ -93,10 +101,8 @@ paper.addEventListener(('click'), () => {
     rounds += roundResult.rounds;
 
     console.log("Round: " + rounds);
-    console.log("Human says " + paper.value);
     console.log("Computer says " + comp);
-    console.log("Human score: " + humanScore);
-    console.log("Computer score: " + computerScore);
+    displayScores(humanScore, computerScore, rounds);
     });
 
 scissor.addEventListener(('click'), () => {
@@ -107,10 +113,8 @@ scissor.addEventListener(('click'), () => {
     rounds += roundResult.rounds;
 
     console.log("Round: " + rounds);
-    console.log("Human says " + scissor.value);
     console.log("Computer says " + comp);
-    console.log("Human score: " + humanScore);
-    console.log("Computer score: " + computerScore);
+    displayScores(humanScore, computerScore, rounds);
     });
             
 
@@ -128,7 +132,7 @@ function playGame(){
     console.log("Human score: " + humanScore);
     console.log("Computer score: " + computerScore);
     playGame();
-    //console.log("Gameover");
+    //
 }
 playGame();
 */
